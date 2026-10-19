@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A strong El Niño is steering storms toward California</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,560;6..72,650&family=Public+Sans:wght@400;560;680&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style>
+  :root {
+    --paper: #f3efe6;
+    --ink: #1c1915;
+    --muted: #5c564c;
+    --rule: #d9d1c3;
+    --nina: #1d6a86;
+    --nina-soft: #d5e8ef;
+    --nino: #b64022;
+    --nino-soft: #f6ddd4;
+    --ocean: #d5e3ee;
+    --land: #e6dfd2;
+    --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --sans: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1.125rem/1.55 var(--serif); }
+  .page { max-width: 740px; margin: 0 auto; padding: 48px 22px 80px; }
+  .kicker { font: 680 .72rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--nino); margin: 0 0 12px; }
+  h1 { font: 650 clamp(2.1rem, 5vw, 3.15rem)/1.05 var(--serif); letter-spacing: -.02em; margin: 0 0 16px; }
+  .dek { font-size: 1.28rem; line-height: 1.4; color: var(--muted); margin: 0 0 28px; }
+  .plan { border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 8px 0 16px; margin: 0 0 36px; }
+  .plan h2 { font: 680 .72rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; margin: 14px 0 10px; }
+  .plan ol { margin: 0; padding: 0; list-style: none; }
+  .plan li { display: grid; grid-template-columns: 28px 1fr; gap: 8px; margin: 0 0 12px; }
+  .plan li span { font: 680 .95rem/1.3 var(--sans); padding-top: 3px; }
+  .plan strong { font-weight: 650; }
+  h3 { font: 650 1.7rem/1.15 var(--serif); margin: 42px 0 10px; }
+  p { margin: 0 0 16px; }
+  .figure { margin: 22px 0 8px; }
+  .panels { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .panel { background: #fffdf8; border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; }
+  .panel header { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 10px 12px 0; }
+  .panel header b { font: 680 .95rem/1 var(--sans); }
+  .panel header em { font: 400 .78rem/1.3 var(--sans); color: var(--muted); font-style: normal; }
+  .panel svg { display: block; width: 100%; height: auto; }
+  figcaption, .note { font: 400 .82rem/1.45 var(--sans); color: var(--muted); margin: 8px 0 0; }
+  .slopes { background: #fffdf8; border: 1px solid var(--rule); border-radius: 10px; }
+  .meter { background: #fffdf8; border: 1px solid var(--rule); border-radius: 10px; padding: 14px 14px 6px; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+  .card { border-radius: 10px; padding: 14px 14px 12px; }
+  .card.wa { background: var(--nina-soft); }
+  .card.ca { background: var(--nino-soft); }
+  .card h4 { font: 680 .78rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; margin: 0 0 8px; }
+  .card p { font: 400 .95rem/1.4 var(--sans); margin: 0; }
+  .src { margin-top: 48px; padding-top: 14px; border-top: 1px solid var(--rule); }
+  .src h2 { font: 680 .72rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+  .src p { font: 400 .82rem/1.45 var(--sans); color: var(--muted); }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--nino); outline-offset: 3px; }
+  @media (max-width: 680px) {
+    .panels, .cards, #slopes { grid-template-columns: 1fr !important; }
+    .page { padding-top: 32px; }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+  <p class="kicker">Winter 2026–27</p>
+  <h1>A strong El Niño is steering storms toward California</h1>
+  <p class="dek">Washington and California sit on opposite sides of the Pacific storm track. When that track slides south, one mountain range tends to fill in and the other tends to miss. This winter, the ocean is pushing the track south.</p>
+
+  <section class="plan" aria-label="Three things this piece explains">
+    <h2>Three things to take with you</h2>
+    <ol>
+      <li><span>1</span><p><strong>The warm water moves the highway.</strong> El Niño and La Niña are a slow shift of warm water along the equator. Storms follow the jet stream, and the jet stream follows that warm water.</p></li>
+      <li><span>2</span><p><strong>The two states trade places.</strong> A south-shifted jet aims more storms at California and leaves Washington warmer and more often skipped. La Niña does the reverse.</p></li>
+      <li><span>3</span><p><strong>This winter leans California, and it can still surprise you.</strong> A strong El Niño raises the odds. It does not book a powder day, and warmth can turn a “wet” forecast into rain.</p></li>
+    </ol>
+  </section>
+
+  <h3>1. The warm water moves the highway</h3>
+  <p>Most winters, storms that hit the West Coast were born over the Pacific and steered by the jet stream, a fast river of wind high above the ocean. That river does not sit still. It is tugged by where the tropical Pacific is warmest, because warm water feeds the thunderstorms that disturb the flow farther north.</p>
+  <p>In a La Niña, the warmest water piles up in the western Pacific, near Indonesia. The jet tends to come ashore up north, around Washington and southern British Columbia. In an El Niño, the trade winds slacken and the warm water spreads east, into the central and eastern Pacific. The jet is pulled south and east with it, and storms come ashore closer to California.</p>
+  <p>The drawings below are a picture of that shift, not a weather map. Watch where the warm patch sits, and where the jet makes landfall.</p>
+
+  <figure class="figure">
+    <div class="panels" id="basins"></div>
+    <figcaption>A typical La Niña keeps the jet aimed at Washington. A typical El Niño bends it south, toward California. The warm patch is the part of the equatorial Pacific running hotter than usual.</figcaption>
+  </figure>
+
+  <h3>2. The two states trade places</h3>
+  <p>Skiers do not ski “precipitation.” They ski snow that stays on a hill. The same southward shift that helps California does two things to Washington: fewer storms arrive, and the ones that do arrive often come with milder air. The snow line, the elevation where rain turns to snow, climbs the mountain. A mid-slope that was snow in a colder year can be rain.</p>
+  <p>California’s bargain is different. More storms is the favorable part. The catch is temperature, especially this kind of winter, when northern California is also expected to run warm. High in the Sierra, a wet storm is still likely to fall as snow. Lower down, the same storm can be a soaker. Southern California can have a huge year in a very strong El Niño, or a rainy one, depending on how high that snow line sits on the day the storm arrives.</p>
+  <p>This is also why two winters with the same name can feel unrelated at your home mountain. The jet is a seasonal tendency, not a rail. It wobbles week to week. A few weeks aimed a few hundred miles north or south of the seasonal average, or a single atmospheric river, can outweigh the nickname on the winter.</p>
+
+  <figure class="figure">
+    <div class="slopes" id="slopes"></div>
+    <figcaption>Illustrative, not a measurement. In the typical pattern, storms and a lower snow line favor Washington during La Niña, and favor the higher California peaks during El Niño. Rain falls below the dashed line.</figcaption>
+  </figure>
+
+  <h3>3. This winter leans California</h3>
+  <p>On October 8, 2026, NOAA’s Climate Prediction Center said El Niño was still strengthening. The Niño-3.4 region of the equatorial Pacific, the patch forecasters use to keep score, was about 2.1°C warmer than average. A strong to very strong El Niño is likely to last through January–March 2027, and NOAA put the chance of that continuing above 83 percent.</p>
+  <p>The U.S. Winter Outlook, released October 15, follows that setup. Wetter than average weather is favored across much of California. Warmer than average weather is favored across the Pacific Northwest and northern California. Eastern Washington is one of the places where drought is more likely to develop or worsen by the end of January.</p>
+  <p>For someone planning a ski season, the plain reading is: the storm highway is favored to sit over California more often than over Washington, and the air over both the Northwest and northern California is favored to be milder than usual. High Sierra peaks are in the best seat. Washington ski areas are more exposed to missed storms and to rain on the lower mountain. Neither outcome is locked. NOAA’s own wording is that a strong event makes the usual impacts more likely, and still does not guarantee them.</p>
+
+  <figure class="figure">
+    <div class="meter" id="meter"></div>
+    <div class="cards">
+      <article class="card wa">
+        <h4>Washington</h4>
+        <p>Warmer than average is favored. Storms are more likely to pass to the south. Eastern Washington is at higher risk of a deepening drought. Expect a thinner margin for snow, especially below the upper mountain.</p>
+      </article>
+      <article class="card ca">
+        <h4>California</h4>
+        <p>Wetter than average is favored across much of the state. Northern California is also favored to be warmer, so elevation matters. The high Sierra is where extra storms are most likely to stack up as snow.</p>
+      </article>
+    </div>
+    <figcaption>The mark at +2.1°C is the latest Niño-3.4 reading from NOAA’s October 8, 2026 discussion, not a forecast and not a seasonal average. El Niño is declared at +0.5°C. Strong events are generally those that reach +1.5°C or more over a season; very strong events reach +2.0°C or more.</figcaption>
+  </figure>
+
+  <p>What to watch after opening day is the jet itself, not the headline. If it stays south for weeks at a time, California keeps collecting storms and Washington keeps waiting. If it snaps north for a month, Washington can still steal a cycle of snow. And on any single storm, the number that matters at the lodge is the snow line.</p>
+
+  <footer class="src">
+    <h2>Sources</h2>
+    <p>Typical jet and storm-track patterns: NOAA National Weather Service, “Weather Impacts of ENSO,” and the Climate Prediction Center’s “North American winter features” during El Niño and La Niña. Current event: NOAA Climate Prediction Center, ENSO Diagnostic Discussion, October 8, 2026 (El Niño Advisory; Niño-3.4 about +2.1°C; strong to very strong El Niño likely through January–March 2027, chance remaining above 83 percent). Seasonal tilt: NOAA U.S. Winter Outlook, October 15, 2026, and the Climate Prediction Center’s prognostic discussion for long-lead outlooks the same day. The maps and mountain drawings on this page are explanatory sketches. They are not a forecast product and they do not show measured snowfall.</p>
+  </footer>
+</main>
+<script>
+const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function basin(host, mode) {
+  const elNino = mode === "nino";
+  const W = 460, H = 360;
+  const svg = host.append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("role", "img");
+  svg.append("title").text(elNino
+    ? "El Niño: warm water sits farther east and the jet stream bends south into California."
+    : "La Niña: warm water sits in the western Pacific and the jet stream comes ashore at Washington.");
+
+  svg.append("rect").attr("width", W).attr("height", H).attr("fill", "#d5e3ee");
+
+  const coast = [
+    [318, 0], [308, 36], [332, 62], [300, 98], [318, 132],
+    [292, 168], [308, 198], [286, 232], [300, 262], [278, 292],
+    [296, 328], [308, 360]
+  ];
+  const land = ["M", coast.map(p => p.join(",")).join("L"), `L${W},${H}`, `L${W},0`, "Z"].join(" ");
+  svg.append("path").attr("d", land).attr("fill", "#e7e0d2");
+  svg.append("path").attr("d", "M" + coast.map(p => p.join(",")).join("L")).attr("fill", "none").attr("stroke", "#b7ad9c").attr("stroke-width", 1.5);
+
+  const eq = 312;
+  svg.append("line").attr("x1", 16).attr("x2", 270).attr("y1", eq).attr("y2", eq)
+    .attr("stroke", "#7f93a3").attr("stroke-dasharray", "3 4");
+  svg.append("text").attr("x", 20).attr("y", eq - 28).attr("fill", "#5c6d7c")
+    .attr("font-family", "Public Sans, sans-serif").attr("font-size", 11).text("Equator");
+
+  const warm = elNino ? { cx: 196, rx: 78 } : { cx: 78, rx: 52 };
+  const blob = svg.append("ellipse").attr("cx", warm.cx).attr("cy", eq).attr("rx", warm.rx).attr("ry", 18)
+    .attr("fill", elNino ? "#f0a090" : "#f3c1b4").attr("opacity", .95);
+  svg.append("text").attr("x", warm.cx).attr("y", eq + 36).attr("text-anchor", "middle")
+    .attr("fill", "#8a3d2c").attr("font-family", "Public Sans, sans-serif").attr("font-size", 12).attr("font-weight", 680)
+    .text(elNino ? "Warm water, farther east" : "Warm water, far west");
+
+  for (let i = 0; i < 3; i++) {
+    const x = warm.cx - 28 + i * 28;
+    svg.append("path").attr("d", `M${x - 10},${eq - 22} q10,-16 20,0 q-6,-6 -10,0 q-4,-6 -10,0 z`)
+      .attr("fill", "#8ea0ae").attr("opacity", .8);
+  }
+
+  const jetD = elNino
+    ? "M18,118 C110,96 168,150 214,188 C262,228 270,246 286,258"
+    : "M18,86 C120,70 190,78 250,96 C292,108 300,112 304,118";
+  const jet = svg.append("path").attr("class", "jet").attr("d", jetD).attr("fill", "none")
+    .attr("stroke", elNino ? "#b64022" : "#1d6a86").attr("stroke-width", 3).attr("stroke-linecap", "round");
+
+  const len = jet.node().getTotalLength();
+  const end = jet.node().getPointAtLength(len);
+  const prev = jet.node().getPointAtLength(len - 8);
+  const ang = Math.atan2(end.y - prev.y, end.x - prev.x);
+  svg.append("path").attr("d", `M${end.x},${end.y} l${-10 * Math.cos(ang - .5)},${-10 * Math.sin(ang - .5)} l${10 * Math.cos(ang + .5) - 10 * Math.cos(ang - .45)},${10 * Math.sin(ang + .5) - 10 * Math.sin(ang - .45)} Z`)
+    .attr("fill", elNino ? "#b64022" : "#1d6a86");
+
+  svg.append("text").attr("x", elNino ? 70 : 78).attr("y", elNino ? 108 : 74)
+    .attr("fill", elNino ? "#b64022" : "#1d6a86")
+    .attr("font-family", "Public Sans, sans-serif").attr("font-size", 12).attr("font-weight", 680)
+    .text("Jet stream");
+
+  const places = [
+    { name: "Washington", x: 304, y: 118, on: !elNino },
+    { name: "California", x: 286, y: 258, on: elNino }
+  ];
+  places.forEach(p => {
+    svg.append("circle").attr("cx", p.x).attr("cy", p.y).attr("r", p.on ? 6 : 3.5)
+      .attr("fill", p.on ? (elNino ? "#b64022" : "#1d6a86") : "#8d8476");
+    svg.append("text").attr("x", p.x + 12).attr("y", p.y + 4)
+      .attr("fill", p.on ? "#1c1915" : "#6e675c")
+      .attr("font-family", "Public Sans, sans-serif").attr("font-size", p.on ? 13 : 12)
+      .attr("font-weight", p.on ? 680 : 400).text(p.name);
+  });
+
+  const dots = d3.range(5).map(i => svg.append("circle").attr("r", 3.2).attr("fill", "#fff").attr("stroke", elNino ? "#b64022" : "#1d6a86").attr("stroke-width", 1.4));
+  const start = performance.now();
+  function frame(now) {
+    const t = reduced ? 0.35 : ((now - start) / 4200) % 1;
+    dots.forEach((d, i) => {
+      const u = (t + i / dots.length) % 1;
+      const pt = jet.node().getPointAtLength(u * len);
+      d.attr("cx", pt.x).attr("cy", pt.y).attr("opacity", u > 0.96 ? 0 : 1);
+    });
+    if (!reduced) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  blob.attr("data-mode", mode);
+}
+
+const basins = d3.select("#basins");
+[{ id: "nina", name: "La Niña", note: "Storms favor the north" }, { id: "nino", name: "El Niño", note: "Storms favor the south" }].forEach(spec => {
+  const panel = basins.append("section").attr("class", "panel");
+  panel.append("header").html(`<b>${spec.name}</b><em>${spec.note}</em>`);
+  basin(panel, spec.id);
+});
+
+function slopes() {
+  const phases = [
+    { title: "Typical La Niña", tint: "#e7f2f6", ink: "#1d6a86", stormsOn: "wa", snow: { wa: 0.72, ca: 0.28 },
+      blurb: "During La Niña, storms and a lower snow line favor Washington." },
+    { title: "Typical El Niño", tint: "#f8ebe6", ink: "#b64022", stormsOn: "ca", snow: { wa: 0.3, ca: 0.55 },
+      blurb: "During El Niño, storms shift to California and the snow line sits higher, so lower slopes are more often rain." }
+  ];
+  const wrap = d3.select("#slopes").style("display", "grid").style("grid-template-columns", "1fr 1fr");
+  phases.forEach(phase => {
+    const svg = wrap.append("svg").attr("viewBox", "0 0 360 390").attr("role", "img");
+    svg.append("title").text(phase.blurb);
+    svg.append("rect").attr("width", 360).attr("height", 390).attr("fill", phase.tint);
+    svg.append("text").attr("x", 24).attr("y", 36).attr("fill", phase.ink)
+      .attr("font-family", "Public Sans, sans-serif").attr("font-size", 16).attr("font-weight", 680).text(phase.title);
+    drawPeak(svg, { name: "Washington", cx: 110, storms: phase.stormsOn === "wa", snow: phase.snow.wa, ink: phase.ink });
+    drawPeak(svg, { name: "California", cx: 250, storms: phase.stormsOn === "ca", snow: phase.snow.ca, ink: phase.ink });
+  });
+}
+
+function drawPeak(g, hill) {
+  const base = 300, h = 150, w = 62;
+  const cx = hill.cx;
+  const peak = base - h;
+  const snowY = peak + h * (1 - hill.snow);
+  const half = w * (1 - hill.snow);
+  g.append("path").attr("d", `M${cx - w},${base} L${cx},${peak} L${cx + w},${base} Z`).attr("fill", "#c3b7a4");
+  g.append("path").attr("d", `M${cx - half},${snowY} L${cx},${peak} L${cx + half},${snowY} Z`).attr("fill", "#f7f4ee");
+  g.append("line").attr("x1", cx - w - 8).attr("x2", cx + w + 8).attr("y1", snowY).attr("y2", snowY)
+    .attr("stroke", "#1c1915").attr("stroke-dasharray", "3 3").attr("stroke-width", 1);
+  g.append("text").attr("x", cx).attr("y", base + 24).attr("text-anchor", "middle").attr("fill", "#1c1915")
+    .attr("font-family", "Public Sans, sans-serif").attr("font-size", 13).attr("font-weight", 680).text(hill.name);
+  g.append("text").attr("x", cx).attr("y", base + 42).attr("text-anchor", "middle").attr("fill", "#5c564c")
+    .attr("font-family", "Public Sans, sans-serif").attr("font-size", 11)
+    .text(hill.snow >= 0.65 ? "Snow well down the hill" : hill.snow >= 0.45 ? "Snow on the upper half" : "Snow only up high");
+
+  if (hill.storms) {
+    const cloudY = peak - 28;
+    g.append("ellipse").attr("cx", cx - 16).attr("cy", cloudY).attr("rx", 18).attr("ry", 10).attr("fill", "#8ea0ae");
+    g.append("ellipse").attr("cx", cx + 6).attr("cy", cloudY - 6).attr("rx", 22).attr("ry", 12).attr("fill", "#738898");
+    g.append("ellipse").attr("cx", cx + 22).attr("cy", cloudY + 2).attr("rx", 14).attr("ry", 8).attr("fill", "#8ea0ae");
+    for (let i = 0; i < 4; i++) {
+      const x = cx - 18 + i * 12;
+      g.append("line").attr("x1", x).attr("x2", x + 2).attr("y1", cloudY + 16).attr("y2", snowY - 8)
+        .attr("stroke", "#f7f4ee").attr("stroke-width", 1.4);
+    }
+  }
+  if (hill.snow < 0.5) {
+    for (let i = 0; i < 3; i++) {
+      const x = cx - 10 + i * 12;
+      g.append("line").attr("x1", x).attr("x2", x - 3).attr("y1", snowY + 16).attr("y2", snowY + 30)
+        .attr("stroke", "#1d6a86").attr("stroke-width", 1.4);
+    }
+    g.append("text").attr("x", cx + w + 4).attr("y", (snowY + base) / 2).attr("fill", "#1d6a86")
+      .attr("font-family", "Public Sans, sans-serif").attr("font-size", 11).text("rain");
+  }
+}
+
+slopes();
+
+function meter() {
+  const W = 680, H = 168;
+  const svg = d3.select("#meter").append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("role", "img");
+  svg.append("title").text("Niño-3.4 is about 2.1 degrees Celsius above average, past the thresholds for a strong and a very strong El Niño.");
+  const x = d3.scaleLinear().domain([0, 3]).range([48, W - 28]);
+  svg.append("text").attr("x", 48).attr("y", 28).attr("fill", "#1c1915")
+    .attr("font-family", "Newsreader, serif").attr("font-size", 22).text("How warm the key patch of ocean is");
+  svg.append("text").attr("x", 48).attr("y", 50).attr("fill", "#5c564c")
+    .attr("font-family", "Public Sans, sans-serif").attr("font-size", 13).text("Niño-3.4 temperature, degrees Celsius above average");
+
+  const axis = svg.append("g").attr("transform", "translate(0,78)");
+  axis.append("line").attr("x1", x(0)).attr("x2", x(3)).attr("stroke", "#1c1915").attr("stroke-width", 1.5);
+  [0, 0.5, 1.5, 2, 3].forEach(v => {
+    axis.append("line").attr("x1", x(v)).attr("x2", x(v)).attr("y1", 0).attr("y2", 8).attr("stroke", "#1c1915");
+    axis.append("text").attr("x", x(v)).attr("y", 24).attr("text-anchor", "middle").attr("fill", "#5c564c")
+      .attr("font-family", "Public Sans, sans-serif").attr("font-size", 12).text(v.toFixed(1).replace(".0", ""));
+  });
+  const bands = [
+    { v: 0.5, label: "El Niño starts" },
+    { v: 1.5, label: "Strong" },
+    { v: 2.0, label: "Very strong" }
+  ];
+  bands.forEach(b => {
+    axis.append("text").attr("x", x(b.v)).attr("y", 40).attr("text-anchor", "middle").attr("fill", "#5c564c")
+      .attr("font-family", "Public Sans, sans-serif").attr("font-size", 11).text(b.label);
+  });
+  axis.append("line").attr("x1", x(2.1)).attr("x2", x(2.1)).attr("y1", -28).attr("y2", 0).attr("stroke", "#b64022").attr("stroke-width", 2);
+  axis.append("circle").attr("cx", x(2.1)).attr("cy", 0).attr("r", 6).attr("fill", "#b64022");
+  axis.append("text").attr("x", x(2.1) - 8).attr("y", -16).attr("text-anchor", "end").attr("fill", "#b64022")
+    .attr("font-family", "Public Sans, sans-serif").attr("font-size", 13).attr("font-weight", 680).text("+2.1°C now");
+}
+
+meter();
+</script>
+</body>
+</html>
