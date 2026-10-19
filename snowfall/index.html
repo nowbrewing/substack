@@ -39,22 +39,9 @@
   .card.ai .go { color: #1c1915; }
   .card:hover .go { text-decoration: underline; }
   .card:focus-visible, .back:focus-visible { outline: 3px solid #e1a23a; outline-offset: 3px; }
-  .compare { margin-top: 28px; border-top: 1px solid #cfc6b8; }
-  .compare h3 { margin: 22px 0 12px; font: 600 .74rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; }
-  table { width: 100%; border-collapse: collapse; font-size: .98rem; }
-  th, td { padding: 12px 10px 12px 0; text-align: left; vertical-align: top; border-bottom: 1px solid #d5ccbf; }
-  th { font-weight: 600; width: 22%; }
-  td:first-of-type { width: 39%; }
   @media (max-width: 760px) {
     .page { padding-top: 36px; }
     .pair { grid-template-columns: 1fr; }
-    table, thead, tbody, tr, th, td { display: block; width: auto; }
-    thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-    tr { padding: 12px 0; border-bottom: 1px solid #d5ccbf; }
-    td { padding: 4px 0; border: 0; }
-    td::before { display: block; font-size: .74rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-    td:first-of-type::before { content: "Written by the author"; }
-    td:last-of-type::before { content: "Written by AI"; }
   }
 </style>
 </head>
@@ -79,32 +66,6 @@
       <p class="go">Read the AI version</p>
     </a>
   </div>
-
-  <section class="compare" aria-label="How the two articles differ">
-    <h3>What to compare</h3>
-    <table>
-      <thead>
-        <tr><th></th><th>Written by the author</th><th>Written by AI</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>Scope</th>
-          <td>Japan and the U.S. Pacific coast, from Hokkaido to Southern California.</td>
-          <td>Washington and California only, aimed at the coming winter.</td>
-        </tr>
-        <tr>
-          <th>Evidence</th>
-          <td>Season snowfall totals at four resorts, with weak years drawn lighter than stronger ones.</td>
-          <td>The storm-track pattern, the snow line, and NOAA’s outlook. No resort totals.</td>
-        </tr>
-        <tr>
-          <th>Voice</th>
-          <td>Someone learning the pattern in public, with a disclaimer that they are not a climate expert.</td>
-          <td>A polished article that states the takeaway first and keeps the caveat at the end of each point.</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
 </main>
 </body>
 </html>
