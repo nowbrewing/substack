@@ -2,30 +2,106 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Snowfall</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two versions of the same snowfall story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root { --bg: #070d1a; --text: #e8eefb; --muted: #8fa3c4; --link: #7cc4ff;
-    --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
-    --ui: "Instrument Sans", "Segoe UI", system-ui, sans-serif; }
-  body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--ui); }
-  .wrap { max-width: 640px; margin: 0 auto; padding: 72px 20px; }
-  h1 { font: 700 clamp(1.8rem, 4vw, 2.4rem)/1.1 var(--display); letter-spacing: -.02em; margin: 0 0 28px; }
-  nav { display: flex; flex-direction: column; gap: 16px; }
-  a { color: var(--link); font: 600 1.05rem var(--display); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  :focus-visible { outline: 2px solid #ffd36b; outline-offset: 3px; }
+  :root {
+    --bg: #e7e1d6;
+    --ink: #1c1915;
+    --muted: #5e574c;
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "Outfit", "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1.05rem/1.5 var(--sans); }
+  .page { max-width: 1040px; margin: 0 auto; padding: 56px 22px 72px; }
+  .kicker { margin: 0 0 12px; font: 600 .74rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: #8a4b32; }
+  h1 { margin: 0 0 14px; max-width: 16ch; font: 650 clamp(2.4rem, 6vw, 4.2rem)/1.02 var(--serif); letter-spacing: -.03em; }
+  .dek { margin: 0 0 36px; max-width: 42rem; color: var(--muted); font-size: 1.15rem; line-height: 1.45; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .card { display: flex; flex-direction: column; min-height: 100%; padding: 22px 22px 20px; border-radius: 18px; text-decoration: none; color: inherit; }
+  .card.author { background: #122033; color: #e8eefb; }
+  .card.ai { background: #f7f1e7; color: #1c1915; border: 1px solid #d9d0c2; }
+  .who { margin: 0 0 18px; font: 600 .74rem/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; }
+  .card.author .who { color: #8ec8ff; }
+  .card.ai .who { color: #b64022; }
+  h2 { margin: 0 0 12px; font: 560 clamp(1.45rem, 2.4vw, 1.85rem)/1.15 var(--serif); letter-spacing: -.02em; }
+  .card p { margin: 0 0 14px; }
+  .card.author p { color: #c5d2e6; }
+  .card.ai p { color: #5e574c; }
+  .go { margin-top: auto; font-weight: 600; }
+  .card.author .go { color: #fff; }
+  .card.ai .go { color: #1c1915; }
+  .card:hover .go { text-decoration: underline; }
+  .card:focus-visible { outline: 3px solid #e1a23a; outline-offset: 3px; }
+  .compare { margin-top: 28px; border-top: 1px solid #cfc6b8; }
+  .compare h3 { margin: 22px 0 12px; font: 600 .74rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; }
+  table { width: 100%; border-collapse: collapse; font-size: .98rem; }
+  th, td { padding: 12px 10px 12px 0; text-align: left; vertical-align: top; border-bottom: 1px solid #d5ccbf; }
+  th { font-weight: 600; width: 22%; }
+  td:first-of-type { width: 39%; }
+  @media (max-width: 760px) {
+    .page { padding-top: 36px; }
+    .pair { grid-template-columns: 1fr; }
+    table, thead, tbody, tr, th, td { display: block; width: auto; }
+    thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    tr { padding: 12px 0; border-bottom: 1px solid #d5ccbf; }
+    td { padding: 4px 0; border: 0; }
+    td::before { display: block; font-size: .74rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    td:first-of-type::before { content: "Written by the author"; }
+    td:last-of-type::before { content: "Written by AI"; }
+  }
 </style>
 </head>
 <body>
-<main class="wrap">
-  <h1>Snowfall</h1>
-  <nav>
-    <a href="Mt.%20Annupuri%20vs%20Mt.%20Bachelor%20%E2%80%94%20Snowpack.html">The different forces driving snowfall across different regions</a>
-    <a href="california-washington.html">A strong El Niño is steering storms toward California</a>
-  </nav>
+<main class="page">
+  <p class="kicker">Same topic, two versions</p>
+  <h1>Why this winter’s snow depends on where you stand</h1>
+  <p class="dek">Both articles are about El Niño, La Niña, and why one ski season is nothing like the last. The first was written by the author. The second was written by AI. They choose different mountains, different evidence, and a different voice. Read them against each other.</p>
+
+  <div class="pair">
+    <a class="card author" href="Mt.%20Annupuri%20vs%20Mt.%20Bachelor%20%E2%80%94%20Snowpack.html">
+      <p class="who">Written by the author</p>
+      <h2>The different forces driving snowfall across different regions</h2>
+      <p>A first-person walk through the maps. It starts with the Siberian Express at Mt. Annupuri in Niseko, then the jet stream and the trade winds at Mt. Bachelor, then the last eight La Niña winters and eight El Niño winters at Stevens Pass, Mt. Bachelor, Mammoth, and Snow Summit.</p>
+      <p class="go">Read the original</p>
+    </a>
+    <a class="card ai" href="california-washington.html">
+      <p class="who">Written by AI</p>
+      <h2>A strong El Niño is steering storms toward California</h2>
+      <p>A finished explainer that stays on Washington versus California. It shows how a south-shifted jet moves storms, why a wet forecast can still fall as rain, and what NOAA’s October 2026 outlook implies for this season. The drawings are sketches, not measured snowfall.</p>
+      <p class="go">Read the AI version</p>
+    </a>
+  </div>
+
+  <section class="compare" aria-label="How the two articles differ">
+    <h3>What to compare</h3>
+    <table>
+      <thead>
+        <tr><th></th><th>Written by the author</th><th>Written by AI</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Scope</th>
+          <td>Japan and the U.S. Pacific coast, from Hokkaido to Southern California.</td>
+          <td>Washington and California only, aimed at the coming winter.</td>
+        </tr>
+        <tr>
+          <th>Evidence</th>
+          <td>Season snowfall totals at four resorts, with weak years drawn lighter than stronger ones.</td>
+          <td>The storm-track pattern, the snow line, and NOAA’s outlook. No resort totals.</td>
+        </tr>
+        <tr>
+          <th>Voice</th>
+          <td>Someone learning the pattern in public, with a disclaimer that they are not a climate expert.</td>
+          <td>A polished article that states the takeaway first and keeps the caveat at the end of each point.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 </main>
 </body>
 </html>
